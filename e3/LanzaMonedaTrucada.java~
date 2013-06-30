@@ -1,0 +1,34 @@
+//********************************************************************
+//  LanzaMoneda.java       Autor: Lewis/Loftus
+//                         Adaptado por: GSyC
+//
+//  Muestra el uso de una clase definida por el usuario
+//********************************************************************
+
+public class LanzaMoneda
+{
+   //--------------------------------------------------------------------
+   //  Lanza una moneda varias veces y cuenta el número de caras y cruces
+   //--------------------------------------------------------------------
+   public static void main (String[] args)
+   {
+      final int NUM_VECES = 1000;
+      int caras = 0, cruces = 0;
+
+      Moneda miMoneda = new Moneda();  // instancia un objeto Moneda
+
+      for (int contador=1; contador <= NUM_VECES; contador++)
+      {
+         miMoneda.lanza();
+
+         if (miMoneda.esCara()) 
+            caras++;
+         else
+            cruces++;
+      }
+
+      System.out.println ("Número de lanzamientos: " + NUM_VECES);
+      System.out.println ("Número de caras : " + caras);
+      System.out.println ("Número de cruces: " + cruces);
+   }
+}

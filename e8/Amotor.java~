@@ -1,0 +1,49 @@
+//********************************************************************
+//  Empleado.java       Author: Lewis/Loftus
+//                      Adapatado por: GSyC
+//
+//  Representa a un empleado general a sueldo de la organización
+//********************************************************************
+import java.text.DecimalFormat;
+
+abstract public class Amotor extends Vehiculo
+{
+    protected double consumo;   
+    protected double precioGasolina;
+    protected double riesgoExplosion;
+    protected double penalizacion;
+    //-----------------------------------------------------------------
+    //  Construye un vehiculo a gasolina
+    //-----------------------------------------------------------------
+    public Amotor (int identificador, char clase, double velocidad, double consumo,
+		   double precioGasolina, double riesgoExploxion, double penalizacion)
+    {
+	super (identificador,clase,velocidad);
+	
+	this.consumo= consumo;//sera un aleatorio
+	this.precioGasolina= precioGasolina;//se lo pasara el subtipo
+	this.riesgoExplosion= riesgoExploxion;//sera un aleatorio
+	this.penalizacion= penalizacion;
+    }
+
+   //-----------------------------------------------------------------
+   //  Devuelve un string con la información del vehiculo a gasolina
+   //-----------------------------------------------------------------
+   public String toString()
+   {
+      String resultado = super.toString();
+      DecimalFormat fmt = new DecimalFormat ("0.##");
+      
+      resultado += fmt.format(this.penalizacion) +"\t";
+      resultado += fmt.format(this.consumo) +"\t";
+      //resultado += fmt.format(this.precioGasolina) +"\t";
+      resultado += fmt.format(this.riesgoExplosion) +"\t";
+      
+      return resultado;
+   }
+    
+    //-----------------------------------------------------------------
+    //  Las clases derivadas deberan implementar este metodo
+    //-----------------------------------------------------------------
+    public abstract void correUnKilometro ();
+}

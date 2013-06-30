@@ -1,0 +1,29 @@
+//********************************************************************#
+//  Autor: David Rozas
+//  tMCSCajero.java      
+//
+//  Extiende la clase Cliente->Servidor.  Este es el tipo de mensaje que
+//  enviara cuando le pida que quiere jugar al mus.
+//  (En realidad no aporta atributos nuevos, pero asi lo veo más claro)
+//********************************************************************#
+
+public class tMCSMus extends tMensajeCS
+{
+    //-----------------------------------------------------------------
+    //  Construye un mensaje
+    //-----------------------------------------------------------------
+    public tMCSMus (int tPrograma)
+    {
+	super(tPrograma);
+    }
+
+    //-----------------------------------------------------------------
+    //  Devuelve un String con la info del mensaje
+    //-----------------------------------------------------------------
+    public String toString()
+    {
+	String res= super.toString();
+	return res;
+    }
+    
+}

@@ -1,0 +1,42 @@
+//********************************************************************
+//  Miembro.java       Author: Lewis/Loftus
+//                     Adaptado por: GSyC
+//
+//  Representa un miembro genérico del personal de una organización
+//********************************************************************
+
+abstract public class Miembro implements Com
+{
+   protected String nombre;
+   protected String dirección;
+   protected String teléfono;
+
+   //-----------------------------------------------------------------
+   //  Construye un miembro con la información que se le proporciona
+   //-----------------------------------------------------------------
+   public Miembro (String nombre, String dirección, String teléfono)
+   {
+      this.nombre = nombre;
+      this.dirección = dirección;
+      this.teléfono = teléfono;
+   }
+
+   //-----------------------------------------------------------------
+   //  Devuelve un string con la información del miembro del personal
+   //-----------------------------------------------------------------
+   public String toString()
+   {
+      String resultado = "Nombre: " + nombre + "\n";
+
+      resultado += "Dirección: " + dirección + "\n";
+      resultado += "Teléfono: " + teléfono;
+
+      return resultado;
+   }
+
+   //-----------------------------------------------------------------
+   //  Las clases derivadas deben definir un método pagar para cada 
+   //  tipo de miembro del personal
+   //-----------------------------------------------------------------
+   public abstract double pagar();
+}

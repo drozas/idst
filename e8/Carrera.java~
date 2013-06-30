@@ -1,0 +1,176 @@
+//********************************************************************#
+//  David Rozas
+//
+//  Personal.java       
+//                      
+//
+//  Representa el personal de una organización concreta (modificado)
+//********************************************************************#
+
+    import java.util.Random;
+
+public class Carrera
+{
+    private Vehiculo[] listaParticipantes;
+    private int kmCarrera;
+    private String nombre;
+    private static Random generador= new Random();
+    
+    public Carrera(String nombre, int cantidadCochesTipoA, int cantidadCochesTipoB,
+		   int cantidadCochesTipoC, int cantidadCochesTipoD, int kilometros)
+    {
+	int identif;
+	int i;
+	int desde, hasta;
+	identif=1;
+	int cantidadTotal= cantidadCochesTipoA + cantidadCochesTipoB + cantidadCochesTipoC + cantidadCochesTipoD;
+	
+	listaParticipantes= new Vehiculo[cantidadTotal];
+	//Llamamos a sus constructores
+	desde=0;
+	hasta=cantidadCochesTipoA;
+	for(i=desde;i<hasta;i++)
+	{
+	    listaParticipantes[i]= new tipoA(identif,generador.nextDouble()*200,generador.nextDouble(),generador.nextDouble());
+	    identif++;
+	}
+	
+	desde= desde+ cantidadCochesTipoA;
+	hasta=desde+cantidadCochesTipoB;
+	for(i=desde;i<hasta;i++)
+	{
+	    listaParticipantes[i]= new tipoB(identif,generador.nextDouble()*180,generador.nextDouble(),generador.nextDouble());
+	    identif++;
+	}
+	
+	desde= desde + cantidadCochesTipoB;
+	hasta= desde + cantidadCochesTipoC;
+        
+	for(i=desde;i<hasta;i++)
+	{
+	    listaParticipantes[i]= new tipoC(identif,generador.nextDouble()*150,generador.nextDouble(),generador.nextDouble());
+	    identif++;
+	}
+	
+	desde= desde + cantidadCochesTipoC;
+	hasta= desde + cantidadCochesTipoD;
+	
+	for(i=desde ;i<hasta;i++)
+	{
+	    listaParticipantes[i]= new tipoD(identif,generador.nextDouble()*100);
+	    identif++;
+	}
+	
+	//y recogemos el resto de parametros
+	this.kmCarrera= kilometros;
+	this.nombre= nombre;
+		
+    }
+
+    public String get_nombre()
+    {
+	String res= this.nombre;
+	return res;
+    }
+
+    public int get_kilometros()
+    {
+	int res= this.kmCarrera;
+	return res;
+    }
+
+
+
+
+
+
+    public boolean quedaAlguno()
+    {
+	int i=0;
+	boolean hayAlguno=false;
+	
+	while( (i<listaParticipantes.length) && (!hayAlguno))
+	{
+	    //salimo si queda alguno, o llegamos al final
+	    if (listaParticipantes[i].SigueEnCarrera() )
+	    {
+		hayAlguno=true;
+	    }
+	    i++;
+	}
+	
+	return hayAlguno;
+
+    }
+
+
+
+
+   //-----------------------------------------------------------------
+   //  Paga a todos los miembros del personal
+   //-----------------------------------------------------------------
+   public void PreparadosListosYa ()
+   {
+       int km_recorridos =0;
+       int i=0;
+    
+       while ( (km_recorridos<=this.get_kilometros() ) && (this.quedaAlguno() ) )
+	   {
+
+	       //Pintamos los que no hayan explotado cada 10 km
+	       if((km_recorridos%10)==0 ||(km_recorridos==this.get_kilometros()) )
+		   {
+		       System.out.println(" Kilómetro : " + km_recorridos);
+		       System.out.println("Ident\t Tipo\t Vel\t TºReal\tTºcompensado\tGastoAcum\tPenali\tConsumo");
+		       System.out.println(this.toString());
+		   }
+	       for (i=0; i<listaParticipantes.length; i++)
+	       {
+		   listaParticipantes[i].correUnKilometro();
+	       }
+
+
+	       km_recorridos++;
+	   }
+
+
+   }
+
+
+
+
+	    
+
+   //-----------------------------------------------------------------
+   //  Ordena segun el método de inserción
+   //-----------------------------------------------------------------
+
+    public void ordenar()
+    {
+	
+	Sorts.insertionSort(listaParticipantes);
+    }
+
+   //-----------------------------------------------------------------
+   //  Devuelve en un string la info del personal
+   //-----------------------------------------------------------------
+
+    public String toString()
+    {
+	int i=0;
+	String cadenaDevuelta="";
+	
+	for (i=0; i< listaParticipantes.length; i++)
+	{
+	    if ( listaParticipantes[i].SigueEnCarrera())
+		{
+		    cadenaDevuelta+= listaParticipantes[i].toString();
+	
+		}
+	}
+	
+	return cadenaDevuelta;
+    }
+
+}
+	

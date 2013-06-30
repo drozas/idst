@@ -1,0 +1,84 @@
+//********************************************************************
+//  Complejo.java   
+//
+//  Implementa la clase numero complejo
+//********************************************************************
+
+public class TestComplejos
+{
+    
+    private int pReal;
+    private int pImaginaria;
+
+
+    //-----------------------------------------------------------------
+   //  Constructor del tipo complejo
+   //-----------------------------------------------------------------
+
+    public Complejo (int pReal; int pImaginaria)
+    {
+	this.pReal=pReal;
+	this.pImaginaria=pImaginaria;
+    }
+
+   //-----------------------------------------------------------------
+   //  Devuelve la parte real
+   //-----------------------------------------------------------------
+
+    public int parteReal ()
+    {
+	int realDevuelto=0;
+	
+	realDevuelto= this.pReal;
+	return realDevuelto;
+    }
+
+   //-----------------------------------------------------------------
+   //  Devuelve la parte imaginaria
+   //-----------------------------------------------------------------
+
+    public int parteImaginaria ()
+    {
+	int imagDevuelto=0;
+	
+	imagDevuelto= this.pReal;
+	return imagDevuelto;
+    }
+    
+    //-----------------------------------------------------------------
+    //  Devuelve un booleano, que nos dice si es Real puro
+    //-----------------------------------------------------------------
+    
+    public boolean esRealPuro ()
+    {
+	boolean esPuro=FALSE;
+	    
+	esPuro= pImaginaria==0;
+	return esPuro;
+    }
+
+    //-----------------------------------------------------------------
+    //  Devuelve un booleano, que nos dice si es Imaginario puro
+    //-----------------------------------------------------------------
+    
+    public boolean esImaginarioPuro ()
+    {
+	boolean esPuro=FALSE;
+	    
+	esPuro= pReal==0;
+	return esPuro;
+	
+    }
+
+    //-----------------------------------------------------------------
+    //  Devuelve un booleano, si ambos numeros complejos son iguales
+    //-----------------------------------------------------------------
+
+    public boolean equals(Complejo nComplejo)
+    {
+	boolean sonIguales=FALSE;
+
+	//Son iguales, solo si los son sus dos partes
+	sonIguales= (this.pReal==nComplejo.parteReal()) && (this.pImaginaria==nComplejo.parteImaginaria());
+    }
+}
